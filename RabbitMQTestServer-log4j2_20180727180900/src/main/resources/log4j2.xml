@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="180">
+    <properties>
+        <property name="LOG_HOME">E:/IIntelliJ_IDEA_workspace/IIntelliJ_IDEA_Workspace001/spring-log4j</property>
+        <property name="LOG_NAME">provider</property>
+    </properties>
+    <Appenders>
+        <RollingFile name="logRollingFile" fileName="${LOG_HOME}/${LOG_NAME}.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM}/${LOG_NAME}-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout
+                    pattern="%d{yyyy.MM.dd 'at' HH:mm:ss z}  %-5level %class{36} %L %M %R %A - %msg%xEx%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+        </RollingFile>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [log4j2]  %-5level %logger{36} - %msg%n[%A][%R]"/>
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Root level="DEBUG">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="logRollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
